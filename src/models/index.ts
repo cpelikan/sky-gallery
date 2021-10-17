@@ -3,4 +3,5 @@ export type DataImage = {
     thumb: string;
     full: string;
     title?: string;
+    url?: string;
 }
