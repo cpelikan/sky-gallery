@@ -1,5 +1,6 @@
 import { DataImage } from '@models';
-import { EventEmit } from '../../service'; 
+import { eventEmit } from '../../service'; 
+import { SkyFull } from '../sky-full/sky-full';
 
 export class SkyImg extends HTMLElement {
 
@@ -23,20 +24,32 @@ export class SkyImg extends HTMLElement {
                 widht:15rem;
                 padding:1rem;
             }
+
+           
         </style>    
       `;
       this.shadowDOM.innerHTML = style;
     }
 
     connectedCallback(){
-        const img = document.createElement('img');
+        const img: HTMLImageElement = document.createElement('img');
         img.src = this.prop?.thumb;
+        img.width = this.prop?.width;
+        img.height = this.prop?.height;
 
-        img.addEventListener('load', (evt)=> EventEmit(this, evt.type));
-        img.addEventListener('error', (evt)=> EventEmit(this, evt.type));
-        
-        this.shadowDOM.appendChild(img)
+
+        img.addEventListener('load', (evt)=> eventEmit(this, evt.type));
+        img.addEventListener('error', (evt)=> eventEmit(this, evt.type));
+        img.addEventListener('click', ()=> this.goFullScreen(this.prop));
+        this.shadowDOM.appendChild(img);
     }
+
+    goFullScreen({full, title}: DataImage){
+        const fullScreen = new SkyFull;
+        fullScreen.prop = {full, title}
+        document.body.appendChild(fullScreen);
+    }
+
 }
 
 customElements.define('sky-img', SkyImg);

@@ -18,12 +18,16 @@ export async function fetchData(): Promise<DataImage[]>{
     const dataImage: DataImage[] = images
                                         .filter( (img:any) => img.data?.preview && img.data?.thumbnail !== 'self')
                                         .map( (img:any) => {
+    const objImg = img.data;                                                
+
         return {
-            id : img.data.id,
-            title : img.data.title,
-            thumb: img.data.thumbnail,
-            full: img.data.url_overridden_by_dest,
-            url: img.data.url
+            id : objImg.id,
+            title : objImg.title,
+            thumb: objImg.thumbnail,
+            width: objImg.thumbnail_width,
+            height: objImg.thumbnail_height,
+            full: objImg.url_overridden_by_dest,
+            url: objImg.url
         }
     });
     return dataImage;

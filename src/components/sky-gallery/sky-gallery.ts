@@ -23,9 +23,6 @@ export class SkyGallery extends HTMLElement {
     this.shadowDOM.innerHTML = style;
       
     this.shadowDOM.appendChild(this.galleryRoot);
-
-      
-    //const template = document.createElement('template');
       
   }
 
@@ -44,7 +41,6 @@ export class SkyGallery extends HTMLElement {
   drawImages(data: DataImage[]){
     const imgNum: number = data.length;
     const counter: string[] = [];
-    
     const handlerProxy = {
       
        // => rev type any
@@ -67,15 +63,15 @@ export class SkyGallery extends HTMLElement {
         const img = new SkyImg;
         img.prop = dataImg;
         this.galleryRoot.appendChild(img);
+        
         img.addEventListener('load', (evt)=> {
           evt.stopPropagation();
           proxyCounter.push(true);
-        
         })
+
         img.addEventListener('error', (evt)=> {
           evt.stopPropagation();
           proxyCounter.push(true);
-          
         })
     })
     
