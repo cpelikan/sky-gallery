@@ -1,14 +1,20 @@
 
 import { DataImage } from '@models';
-import { fetchData/*, CATEGORIES*/, getIndexFetch } from '../../service/fetch-data';
+import { fetchData/*, CATEGORIES*/, getIndexFetch, resetIndexFetch } from '../../service/fetch-data';
+import { SkyFilter } from '../sky-filter/sky-filter';
 import { SkyImg } from '../sky-image/sky-image';
 import { SkyLoader } from '../sky-loader/sky-loader';
+import { IMAGES_NOT_FOUND } from '../../dictionary/dictionary';
 
 export class SkyGallery extends HTMLElement {
     
   private shadowDOM = this.attachShadow({mode: 'closed'});
   private loader = new SkyLoader;
+  private filter = new SkyFilter;
   private galleryRoot = document.createElement('div');
+  private state = {
+    filter : ''
+  }
 
   constructor(){ 
     super();       
@@ -21,21 +27,26 @@ export class SkyGallery extends HTMLElement {
       </style>    
     `;
     this.shadowDOM.innerHTML = style;
-      
-    this.shadowDOM.appendChild(this.galleryRoot);
-      
   }
 
   async connectedCallback() {
+    this.shadowDOM.appendChild(this.filter)
+    this.shadowDOM.appendChild(this.galleryRoot);
     this.shadowDOM.appendChild(this.loader)
     this.infiniteScroll();
+
+    this.addListeners();
   }
 
   async getDataSet(){
+    
     this.loader.active = true;
-    const data = await fetchData();
+    const data = await fetchData(this.state.filter);
     this.loader.active = false;
-    this.drawImages(data);
+    
+    (!!data?.length) ? 
+          this.drawImages(data) : 
+          this.showMessage();
   }
 
   drawImages(data: DataImage[]){
@@ -78,10 +89,14 @@ export class SkyGallery extends HTMLElement {
   }
 
   proxyFetch(checklist: boolean[]){
-    checklist.push(getIndexFetch() !== null);
-    checklist.push(!this.loader.active);
+    const checkRules = [
+      !!this.state.filter,
+      getIndexFetch() !== null,
+      !this.loader.active,
+      ...checklist
+    ]
    
-    if(checklist.every(check => !!check)){
+    if(checkRules.every(check => !!check)){
       this.getDataSet();
     }
   }
@@ -104,6 +119,24 @@ export class SkyGallery extends HTMLElement {
     
     let observer = new IntersectionObserver(handleIntersect);
     observer.observe(limit);
+  }
+
+  showMessage(){
+    if(this.galleryRoot.innerHTML === ''){
+      const message = document.createElement('h2');
+      message.innerHTML = IMAGES_NOT_FOUND(this.state.filter);
+      this.galleryRoot.appendChild(message);
+    }
+  }
+
+  addListeners(){
+    this.filter.addEventListener('valueChange', (evt: CustomEvent)=>{
+      this.state.filter = evt.detail?.value;
+      this.galleryRoot.innerHTML = '';
+      resetIndexFetch();
+      this.proxyFetch([]);
+    });
+
   }
 
 }

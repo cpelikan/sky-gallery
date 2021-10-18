@@ -9,7 +9,7 @@ export class SkyLoader extends HTMLElement {
     }
     set active(active) {
         this._active = active;
-        //this.toggleAttribute('hidden', !active)
+        this.toggleAttribute('hidden', !active)
     }
 
     constructor(){
@@ -91,6 +91,7 @@ export class SkyLoader extends HTMLElement {
       this.shadowDOM.innerHTML = style;
         const html = document.createElement('div');
         html.innerHTML = `${view} <span>Loading</span>`;
+        this.setAttribute('hidden', "true"); //PATCH TO BE RECACT
         this.shadowDOM.appendChild(html)
     }
 
