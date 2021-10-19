@@ -1,3 +1,4 @@
+import stylesheet from './sky-gallery.scss'; 
 
 import { DataImage } from '@models';
 import { fetchData/*, CATEGORIES*/, getIndexFetch, resetIndexFetch } from '../../service/fetch-data';
@@ -21,9 +22,7 @@ export class SkyGallery extends HTMLElement {
       
     let style: any = `
       <style>
-          :host{
-              display:block;
-          }
+         ${stylesheet}
       </style>    
     `;
     this.shadowDOM.innerHTML = style;
@@ -34,7 +33,6 @@ export class SkyGallery extends HTMLElement {
     this.shadowDOM.appendChild(this.galleryRoot);
     this.shadowDOM.appendChild(this.loader)
     this.infiniteScroll();
-
     this.addListeners();
   }
 

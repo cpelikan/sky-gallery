@@ -1,5 +1,5 @@
 # Web Gallery Component
-POC Web Component, Webpack, Typescript  
+POC Web Component, Webpack, Typescript, SCSS
 ## 
 
 ### Run 

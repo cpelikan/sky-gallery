@@ -13,6 +13,14 @@ module.exports = {
       {
         test: /\.html$/i,
         loader: 'html-loader',
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+            //'style-loader',
+            'css-loader',
+            'sass-loader'
+        ],
       }
     ],
   },
@@ -21,7 +29,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "dist"),
-    filename: 'js/bundle.js'
+    filename: 'js/gallery.js'
 },
 plugins: [
     new HtmlWebpackPlugin({

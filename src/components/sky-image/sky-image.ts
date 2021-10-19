@@ -1,3 +1,5 @@
+import stylesheet from './sky-image.scss'; 
+
 import { DataImage } from '@models';
 import { eventEmit } from '../../service'; 
 import { SkyFull } from '../sky-full/sky-full';
@@ -17,15 +19,8 @@ export class SkyImg extends HTMLElement {
     constructor(){
         super();
         let style: any = `
-        <style>
-            :host{
-                display:inline-block;
-                height:15rem;
-                widht:15rem;
-                padding:1rem;
-            }
-
-           
+        <style>           
+            ${stylesheet}
         </style>    
       `;
       this.shadowDOM.innerHTML = style;
@@ -36,6 +31,7 @@ export class SkyImg extends HTMLElement {
         img.src = this.prop?.thumb;
         img.width = this.prop?.width;
         img.height = this.prop?.height;
+        img.className = 'frame';
 
 
         img.addEventListener('load', (evt)=> eventEmit(this, evt.type));

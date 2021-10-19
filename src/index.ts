@@ -1,5 +1,4 @@
-import {SkyGallery} from "./components/sky-gallery/sky-gallery";
+import { SkyGallery } from "./components/sky-gallery/sky-gallery";
 
 
-
-document.body.appendChild(new SkyGallery);
+document.getElementById('root').appendChild(new SkyGallery);

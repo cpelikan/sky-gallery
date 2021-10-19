@@ -1,0 +1,22 @@
+
+@mixin picFrame($width: 100%, $heigth:100%){
+    
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $heigth;
+    width: $width;
+    max-width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+@mixin shadow{
+    border:solid .15rem var(--contrast);
+    box-shadow: .1rem .1rem .25rem var(--contrast);
+    border-radius: .1rem;
+    &:hover{
+        box-shadow: 0 0 1rem var(--text100);
+    }
+}

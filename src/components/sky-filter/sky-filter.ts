@@ -1,4 +1,7 @@
+import stylesheet from './sky-filter.scss'; 
+
 import { eventEmit, debounce } from '../../service'; 
+import { FILTER_PLACEHOLDER } from '../../dictionary/dictionary';
 
 export class SkyFilter extends HTMLElement {
 
@@ -17,16 +20,14 @@ export class SkyFilter extends HTMLElement {
         super();
         let style: any = `
         <style>
-            :host{
-                display:inline-block;
-            }
-
-           
+            ${stylesheet}
         </style>    
       `;
       this.shadowDOM.innerHTML = style;      
       this.input = document.createElement('input');
       this.input.type = 'text';
+      this.input.placeholder = FILTER_PLACEHOLDER;
+      this.input.className = 'field';
     }
 
     connectedCallback(){

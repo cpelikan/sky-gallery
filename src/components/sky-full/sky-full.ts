@@ -60,9 +60,6 @@ export class SkyFull extends HTMLElement {
             fullScreenExit()
         });
     }
-
-    
-
 }
 
 customElements.define('sky-full', SkyFull);
