@@ -15,8 +15,8 @@
     padding:.5rem;
     width: 100%;
     box-sizing: border-box;
-    background: var(--text100);
+    background: rgb(var(--input));
     color:rgb(var(--background));
     outline: none;
-    border:0;
+    border:solid .1rem rgb(var(--text50));
 }

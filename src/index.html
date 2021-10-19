@@ -7,17 +7,21 @@
     <meta name="viewport" content="width=device-width" />
 
     <style>
-        :root {
-            --background: 6, 68, 151;
-            --text100: #FFF;
-            --text50: #007aff;
-            --contrast: #bfbfbf;
+        body{
+            padding:1rem; 
+            margin:0;
+            background:rgba(var(--background)); 
+            color:rgb(var(--text100)); 
+            font:16px normal system-ui,sans-serif;
+            box-sizing: border-box;    
+            overflow-x: hidden; 
+            max-width: 80.75rem;  
+            margin:0 auto;}
+        h1{
+            font-size:2rem;
+            padding:1rem 0 0 0; 
+            margin:0;
         }
-
-        body{padding:1rem; margin:0;background:rgb(var(--background)); 
-            color:var(--text100); font:16px normal system-ui,sans-serif;
-            box-sizing: border-box;    overflow-x: hidden; max-width: 80.75rem;  margin:0 auto;}
-        h1{font-size:2rem;padding:1rem 0 0 0; margin:0;}
     </style>
 </head>
 

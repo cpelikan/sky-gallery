@@ -5,6 +5,7 @@ import { fetchData/*, CATEGORIES*/, getIndexFetch, resetIndexFetch } from '../..
 import { SkyFilter } from '../sky-filter/sky-filter';
 import { SkyImg } from '../sky-image/sky-image';
 import { SkyLoader } from '../sky-loader/sky-loader';
+import { SkyTheme } from '../sky-theme/sky-theme';
 import { IMAGES_NOT_FOUND } from '../../dictionary/dictionary';
 
 export class SkyGallery extends HTMLElement {
@@ -12,7 +13,8 @@ export class SkyGallery extends HTMLElement {
   private shadowDOM = this.attachShadow({mode: 'closed'});
   private loader = new SkyLoader;
   private filter = new SkyFilter;
-  private galleryRoot = document.createElement('div');
+  private theme = new SkyTheme;
+  private galleryRoot: HTMLDivElement;
   private state = {
     filter : '' //'dog'
   }
@@ -28,8 +30,16 @@ export class SkyGallery extends HTMLElement {
     this.shadowDOM.innerHTML = style;
   }
 
-  async connectedCallback() {
-    this.shadowDOM.appendChild(this.filter)
+  connectedCallback() {
+    this.galleryRoot = document.createElement('div');
+    this.galleryRoot.className = 'gallery-root';
+
+    const actionBar = document.createElement('div');
+    actionBar.className = 'action-bar';
+    actionBar.appendChild(this.filter);
+    actionBar.appendChild(this.theme);
+
+    this.shadowDOM.appendChild(actionBar);
     this.shadowDOM.appendChild(this.galleryRoot);
     this.shadowDOM.appendChild(this.loader)
     this.infiniteScroll();

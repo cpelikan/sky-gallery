@@ -35,7 +35,7 @@ $sizeImage: 8.75rem;
 
 :host(:hover){
     .frame{
-       border-color:var(--text100);
+       border-color:rgb(var(--text100));
         transform: scale3d(-1.5, 1.5, 1.5) translateX(-.5rem);
         transition-delay: 150ms;
     }

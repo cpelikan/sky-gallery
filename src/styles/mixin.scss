@@ -27,10 +27,10 @@ $breackpoint: 480px;
 }
 
 @mixin shadow{
-    box-shadow: .1rem .1rem .25rem var(--contrast);
+    box-shadow: .1rem .1rem .25rem rgb(var(--contrast));
     border-radius: .1rem;
     will-change: box-shadow;
     &:hover{
-        box-shadow: 0 0 1rem var(--text100);
+        box-shadow: 0 0 1rem rgb(var(--text100));
     }
 }

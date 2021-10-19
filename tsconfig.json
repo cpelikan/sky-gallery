@@ -9,5 +9,8 @@
         "paths": {
             "@models": [ "./src/models" ]
         }
-    }
+    },
+    "exclude": [
+        "node_modules"
+      ]
   }

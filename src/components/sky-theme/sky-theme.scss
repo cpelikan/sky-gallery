@@ -1,0 +1,61 @@
+@import '../../styles/mixin';
+
+.theme {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	@include for-mobile{
+		flex-flow: column-reverse;
+	}
+}
+.theme-switch {
+	display: inline-block;
+	background: rgb(var(--text50));
+	border-radius: 16px;
+	width: 58px;
+	height: 32px;
+	position: relative;
+	vertical-align: middle;
+	transition: background 0.25s;
+	&:before,
+	&:after {
+		content: "";
+	}
+	&:before {
+		display: block;
+		background: linear-gradient(to bottom, #fff 0%,#fff 100%);
+		//background: linear-gradient(to bottom, rgb(var(--text100)) 0%,rgb(var(--text100)) 100%);
+		border-radius: 50%;
+		box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+		width: 24px;
+		height: 24px;
+		position: absolute;
+		top: 4px;
+		left: 4px;
+		transition: left 0.25s;
+	}
+	.theme:hover &:before {
+		
+		box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
+	}
+	.theme-checkbox:checked + & {
+		background: rgb(var(--contrast));
+		&:before {
+			left: 30px;
+		}
+	}
+}
+.theme-checkbox {
+	position: absolute;
+	visibility: hidden;
+}
+.theme-label {
+	margin-left: 5px;
+	position: relative;
+	top: 2px;
+	span{
+		@include for-mobile{
+			display:none;
+		}
+	}
+}

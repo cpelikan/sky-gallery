@@ -3,7 +3,13 @@
     display:block;
     max-width: 100%;
 
-    > div{
+    .action-bar {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .gallery-root{
         display:flex;
         flex-wrap: wrap;
         min-height:50vh;
@@ -13,10 +19,17 @@
     }
 }
 
+sky-filter{
+    flex-grow:1;
+}
+sky-theme{
+    margin-left:1rem;
+}
+
 hr{
-    border-color:var(--text50);
+    border-color:rgb(var(--text50));
     border-style: solid;
     border-width: 0 0 .1rem 0;
-    border-color: var(--text50);
+    border-color: rgb(var(--text50));
     margin:1rem 0;
 }
