@@ -1,4 +1,6 @@
-import { BaseDataImage } from '@models';
+import stylesheet from './sky-full.scss'; 
+
+import { BaseDataImage, MediaType } from '@models';
 import { fullScreen, fullScreenExit } from '../../service';
 
 export class SkyFull extends HTMLElement {
@@ -17,22 +19,7 @@ export class SkyFull extends HTMLElement {
         super();
         let style: any = `
         <style>
-            :host{
-                display:flex;
-                align-items: center;
-                justify-content: center;
-                flex-flow: column;
-                padding:1rem;
-            }
-
-            img{
-                max-width:100%;
-                max-height:100%;
-            }
-
-            h1{
-                color:#FFF;
-            }
+          ${stylesheet}
         </style>    
       `;
       this.shadowDOM.innerHTML = style;
@@ -40,12 +27,11 @@ export class SkyFull extends HTMLElement {
 
     connectedCallback(){
         
-        const img = document.createElement('img');
-        img.src = this.prop.full;
+        const media: HTMLElement = this.getMedia(this.prop.mediaType);
         
-        const text = document.createElement('h1');
+        const text = document.createElement('p');
         text.innerText = this.prop.title;
-        this.shadowDOM.appendChild(img);
+        this.shadowDOM.appendChild(media);
         this.shadowDOM.appendChild(text);
 
         fullScreen(this);
@@ -59,6 +45,35 @@ export class SkyFull extends HTMLElement {
         this.addEventListener('click', () => {
             fullScreenExit()
         });
+    }
+
+    getMedia(mediaType: MediaType){
+
+        let elem;
+        switch (mediaType) {
+        default:
+        case 'image':
+            elem = document.createElement('img');
+            elem.src = this.prop.full;
+            break;
+        case 'rich:video':
+        case 'hosted:video':    
+            const img = document.createElement('img');
+            img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7wODIABmDLcp9sin2YAPs1NIjvszHnPknmQ&usqp=CAU';
+            elem = document.createElement('a');
+            elem.href = this.prop.full;
+            elem.target = '_blank';
+            elem.className='thumb';
+            elem.append(img)    
+            break;
+           
+        }
+
+       
+      
+
+        return elem;
+      
     }
 }
 

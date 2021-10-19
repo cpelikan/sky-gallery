@@ -14,7 +14,7 @@ export class SkyGallery extends HTMLElement {
   private filter = new SkyFilter;
   private galleryRoot = document.createElement('div');
   private state = {
-    filter : ''
+    filter : '' //'dog'
   }
 
   constructor(){ 

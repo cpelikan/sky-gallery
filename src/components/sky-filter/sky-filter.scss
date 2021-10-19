@@ -1,15 +1,22 @@
 
 
 :host{
-    display: inline-block;
+    display: block;
+    position: sticky;
+    z-index:1;
+    top: 0;
     padding:1rem 0;
+    box-sizing: border-box;
+    background: rgba(var(--background), .75);
 }
 
 .field{
     font-size:1.5rem;
     padding:.5rem;
     width: 100%;
-    box-sizing: border-box8;
-    background:var(--contrast);
+    box-sizing: border-box;
+    background: var(--text100);
+    color:rgb(var(--background));
     outline: none;
+    border:0;
 }

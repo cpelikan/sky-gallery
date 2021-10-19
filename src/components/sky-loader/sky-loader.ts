@@ -23,7 +23,7 @@ export class SkyLoader extends HTMLElement {
       this.shadowDOM.innerHTML = style;
         const html = document.createElement('div');
         html.innerHTML = `${view} <span>Loading</span>`;
-        this.setAttribute('hidden', "true"); //PATCH TO BE RECACT
+        this.setAttribute('hidden', "true"); //PATCH TO BE REFACT
         this.shadowDOM.appendChild(html)
     }
 

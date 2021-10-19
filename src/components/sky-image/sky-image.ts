@@ -40,9 +40,9 @@ export class SkyImg extends HTMLElement {
         this.shadowDOM.appendChild(img);
     }
 
-    goFullScreen({full, title}: DataImage){
+    goFullScreen({full, title, mediaType}: DataImage){
         const fullScreen = new SkyFull;
-        fullScreen.prop = {full, title}
+        fullScreen.prop = {full, title, mediaType}
         document.body.appendChild(fullScreen);
     }
 

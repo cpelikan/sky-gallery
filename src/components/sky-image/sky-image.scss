@@ -1,26 +1,42 @@
 @import '../../styles/mixin';
 
+$sizeImage: 8.75rem;
+
 :host{
     display:flex;
-    height: 30vmin;
-    width: 30vw;
-    max-width:10rem;
-    min-width: 5rem;
-    padding:1rem;
-    box-sizing: border-box;
-}
-
-:host(:hover){
-    .frame{
-        transition: all 250ms ease-in-out;
-        transform: scale3d(-1.4, 1.5, .5);
-        object-fit: fill;
+    
+    @include for-mobile{
+        height: auto;
+        width: 48%;
+        padding:1rem 0;
     }
+    @include for-desktop{
+        height: 28vmin;
+        width: 28vw;
+
+        max-height:$sizeImage;
+        min-height: $sizeImage;
+    
+        max-width:$sizeImage;
+        min-width: $sizeImage;
+        padding:1rem 1rem 0 0;
+    }
+   
+    box-sizing: border-box;
+    border:solid .1rem transparent;
+    cursor: pointer;
 }
 
 .frame{
     @include picFrame();
     @include shadow();
-    
-    margin-left:-1rem;
+    transition: all 250ms ease-in-out;
+}
+
+:host(:hover){
+    .frame{
+       border-color:var(--text100);
+        transform: scale3d(-1.5, 1.5, 1.5) translateX(-.5rem);
+        transition-delay: 150ms;
+    }
 }
