@@ -43,11 +43,7 @@ export class SkyTheme extends HTMLElement {
         btn.addEventListener('change', ()=>{
             this.status = btn.checked ? 1 : 0;
             this.shadowDOM.querySelector('[data-role="label"]').innerHTML = this.LABELS[this.status];
-            
-            const theme = document.getElementById(this.getNodeName());
-            theme.innerHTML = '';
-            theme.innerHTML = this.THEME[this.status ? 0 : 1];
-            
+                        
             this.swithTheme();
         });
         
@@ -62,7 +58,9 @@ export class SkyTheme extends HTMLElement {
     }
 
     swithTheme(){
-
+        const theme = document.getElementById(this.getNodeName());
+        theme.innerHTML = '';
+        theme.innerHTML = this.THEME[this.status ? 0 : 1];
     }
 
 }

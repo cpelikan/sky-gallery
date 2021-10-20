@@ -1,7 +1,7 @@
 import stylesheet from './sky-gallery.scss'; 
 
 import { DataImage } from '@models';
-import { fetchData/*, CATEGORIES*/, getIndexFetch, resetIndexFetch } from '../../service/fetch-data';
+import { fetchData, getIndexFetch, resetIndexFetch } from '../../service/fetch-data';
 import { SkyFilter } from '../sky-filter/sky-filter';
 import { SkyImg } from '../sky-image/sky-image';
 import { SkyLoader } from '../sky-loader/sky-loader';
