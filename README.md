@@ -1,6 +1,8 @@
-# Web Gallery Component
+# Sky Gallery
+
+## A web gallery builded by web Component
 POC Web Component, Webpack, Typescript, SCSS
-## 
+
 
 ### Run 
 - npm i
